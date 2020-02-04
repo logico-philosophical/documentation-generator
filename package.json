@@ -1,0 +1,36 @@
+{
+  "name": "m42kup-builder",
+  "version": "0.1.0",
+  "description": "M42/markup documentation generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js"
+  },
+  "keywords": [
+    "markup"
+  ],
+  "author": {
+    "name": "logico-philosophical",
+    "url": "http://github.com/logico-philosophical",
+    "email": "ossia@korea.ac.kr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/logico-philosophical/m42kup-builder.git"
+  },
+  "bugs": {
+    "url": "http://github.com/logico-philosophical/m42kup-builder/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^6.11.0",
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "ejs": "^3.0.1",
+    "m42kup": "^0.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
