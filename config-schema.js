@@ -52,7 +52,7 @@ module.exports = {
 	},
 
 	type: 'object',
-	required: ['name', 'src', 'dst', 'list'],
+	required: ['name', 'src', 'dst', 'list', 'render'],
 	additionalProperties: false,
 	properties: {
 		name: {
@@ -72,6 +72,7 @@ module.exports = {
 			minLength: 1,
 			default: './template.ejs'
 		},
+		render: { /* function */ },
 		list: {
 			type: 'array',
 			minItems: 1,

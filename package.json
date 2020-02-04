@@ -28,8 +28,7 @@
     "ajv": "^6.11.0",
     "chalk": "^3.0.0",
     "commander": "^4.1.1",
-    "ejs": "^3.0.1",
-    "m42kup": "^0.1.1"
+    "ejs": "^3.0.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0"

@@ -2,7 +2,6 @@
 
 var fs = require('fs');
 var path = require('path');
-var m42kup = require('m42kup');
 var chalk = require('chalk');
 var ajv = new require('ajv')({
 	useDefaults: true
@@ -17,7 +16,7 @@ var program = new commander.Command();
 program
 	.name('m42kup-builder')
 	.version(version)
-	.option('--config <path>', 'configuration file location', './m42kup-builder.config.json')
+	.option('--config <path>', 'configuration file location', './m42kup-builder.config.js')
 	.parse(process.argv);
 
 function getRelativeDir(srcTree, dstTree) {
@@ -34,7 +33,8 @@ function getRelativeDir(srcTree, dstTree) {
 }
 
 try {
-	console.log(chalk.black.bgGreen(` M42/markup/builder v${version} `) + '\n');
+	var signature = ` M42/markup/builder v${version} `
+	console.log(`${'='.repeat(signature.length)}\n${signature}\n${'='.repeat(signature.length)}\n`);
 	var startTime = Date.now();
 
 	var configPath = program.config;
@@ -43,9 +43,9 @@ try {
 		throw Error(`Configuration file "${path.resolve(configPath)}" does not exist`);
 
 	try {
-		var config = JSON.parse(fs.readFileSync(program.config, 'utf-8'));
+		var config = require(path.resolve(configPath));
 	} catch (err) {
-		throw Error(`Failed to parse configuration file "${path.resolve(configPath)}": ${err.message}`);
+		throw Error(`Error in config file: ${err.stack}`)
 	}
 
 	var valid = ajv.validate(configSchema, config);
@@ -53,6 +53,11 @@ try {
 		throw Error('Configuration file validation failed\n'
 			+ ajv.errors.map(err => `    at <config>${err.dataPath}: ${err.message}`).join('\n'));
 	}
+
+	if (!(config.render instanceof Function))
+		throw Error('<config>.render is not a function');
+
+	var render = config.render;
 
 	var templatePath = config.template;
 
@@ -164,7 +169,7 @@ try {
 			console.log(`[  ${chalk.green('OK')}  ] ${path.join(src, ...tree.dirs, tree.dir)} -> ${path.join(dst, ...tree.dirs, tree.dir, 'index.html')}`);
 			tree.list.map(t => walk(t));
 		} else {
-			let content = m42kup.render(fs.readFileSync(tree.srcpath, 'utf-8'));
+			let content = render(fs.readFileSync(tree.srcpath, 'utf-8'));
 			let globaltoc = getToc(root, tree);
 			let localtoc = getToc(tree, tree);
 
@@ -189,6 +194,7 @@ try {
 	console.log('\nBuild '  + chalk.black.bgGreen(' successful ') + ` (took ${endTime - startTime} ms)`);
 } catch (err) {
 	console.log(`[ ${chalk.red('FAIL')} ] ${err}`);
+	console.log(err);
 
 	let endTime = Date.now();
 	console.log('\nBuild ' + chalk.bgRed(' failed ') + ` (took ${endTime - startTime} ms)`);
