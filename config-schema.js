@@ -69,8 +69,8 @@ module.exports = {
 		},
 		template: {
 			type: 'string',
-			minLength: 1,
-			default: './template.ejs'
+			minLength: 1
+			/* default: <__dirname>/templates/default.ejs */
 		},
 		render: { /* function */ },
 		list: {

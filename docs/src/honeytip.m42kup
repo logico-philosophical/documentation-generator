@@ -1,0 +1,37 @@
+[=꿀팁]
+
+[==자동 빌드 하는 법]
+
+소스를 수정했을 때 자동 빌드되게 하려면 [~(href=https://www.npmjs.com/package/nodemon)nodemon]을 쓸 수 있습니다.
+
+[;;;npm install nodemon --save-dev]
+
+소스 코드가 [;src]에 있다면 다음의 코드를 실행하여 [;src]에 있는 파일이 변경되면 자동 빌드되도록 할 수 있습니다.
+
+[;;;npx nodemon -e * --watch src/ --exec m42kup-builder]
+
+[;m42kup-builder.config.js]나 [;template.ejs] 등의 변화에도 적용하려면 다음과 같이 [;--watch] 옵션을 여러 개 주면 됩니다.
+
+[;;;npx nodemon -e * --watch src/ --watch m42kup-builder.config.js --watch template.ejs --exec m42kup-builder]
+
+코드가 길기 때문에 documentation의 [;package.json]에서 [;scripts]에 다음과 같이 추가하여 쓰면 좋을 것입니다.
+
+[**package.json]
+[;;;
+{
+	...
+	"scripts": {
+		...
+		"nodemon": "nodemon -e * --watch src/ --exec m42kup-builder"
+	},
+	...
+}
+]
+
+이후
+[;;;npm run nodemon]
+으로 실행합니다.
+
+[==().gitignore에 관해]
+
+빌드의 결과물은 .gitignore 하는 게 맞겠으나 GitHub 등에서 빌드된 HTML을 호스트 하려면 무시하면 안 됩니다. m42kup-builder를 위한 Read the Docs 같은 게 나오면 좋겠네요.

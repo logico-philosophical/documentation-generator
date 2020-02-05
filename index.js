@@ -40,7 +40,7 @@ try {
 	var configPath = program.config;
 
 	if (!fs.existsSync(configPath) || fs.lstatSync(configPath).isDirectory())
-		throw Error(`Configuration file "${path.resolve(configPath)}" does not exist`);
+		throw Error(`Configuration file (required) not found at "${path.resolve(configPath)}"`);
 
 	try {
 		var config = require(path.resolve(configPath));
@@ -59,10 +59,10 @@ try {
 
 	var render = config.render;
 
-	var templatePath = config.template;
+	var templatePath = config.template || path.join(__dirname, 'templates/default.ejs');
 
 	if (!fs.existsSync(templatePath) || fs.lstatSync(templatePath).isDirectory())
-		throw Error(`Template file "${path.resolve(templatePath)}" does not exist`);
+		throw Error(`Template file not found at "${path.resolve(templatePath)}"`);
 
 	var templateFile = fs.readFileSync(templatePath, 'utf-8');
 	var template = ejs.compile(templateFile);
@@ -71,15 +71,16 @@ try {
 	var src = config.src;
 
 	if (!fs.existsSync(src) || !fs.lstatSync(src).isDirectory())
-		throw Error(`Source directory "${src}" is not a directory`);
+		throw Error(`Source directory "${path.resolve(src)}" is not a directory`);
 
 	var dst = config.dst;
 
 	if (fs.existsSync(dst) && !fs.lstatSync(dst).isDirectory())
-		throw Error(`Destination directory "${dst}" is not a directory`);
+		throw Error(`Destination directory "${path.resolve(dst)}" is not a directory`);
 
 	console.log(`Source directory:       ${path.resolve(src)}`);
-	console.log(`Destination directory:  ${path.resolve(dst)}\n`);
+	console.log(`Destination directory:  ${path.resolve(dst)}`);
+	console.log(`Using template:         ${config.template ? path.resolve(templatePath) : 'default'}\n`);
 
 	var root = (function walk(dirs, tree) {
 		if (tree.dir) {
@@ -193,8 +194,7 @@ try {
 	let endTime = Date.now();
 	console.log('\nBuild '  + chalk.black.bgGreen(' successful ') + ` (took ${endTime - startTime} ms)`);
 } catch (err) {
-	console.log(`[ ${chalk.red('FAIL')} ] ${err}`);
-	console.log(err);
+	console.log(`[ ${chalk.red('FAIL')} ] ${err.stack}`);
 
 	let endTime = Date.now();
 	console.log('\nBuild ' + chalk.bgRed(' failed ') + ` (took ${endTime - startTime} ms)`);
