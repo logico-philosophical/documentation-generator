@@ -5,7 +5,7 @@ var m42kup = require('m42kup'),
 m42kup.set({hljs, katex});
 
 module.exports = {
-	name: 'm42kup-builder 명세',
+	name: 'm42kup-builder 설명서',
 	src: 'src',
 	dst: 'build',
 	render: text => m42kup.render(text),
