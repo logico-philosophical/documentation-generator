@@ -16,7 +16,7 @@ var program = new commander.Command();
 program
 	.name('m42kup-builder')
 	.version(version)
-	.option('--config <path>', 'configuration file location', './m42kup-builder.config.js')
+	.option('--config <path>', 'location of the configuration file', './m42kup-builder.config.js')
 	.parse(process.argv);
 
 function getRelativeDir(srcTree, dstTree) {
@@ -37,19 +37,9 @@ try {
 	console.log(`${'='.repeat(signature.length)}\n${signature}\n${'='.repeat(signature.length)}\n`);
 	var startTime = Date.now();
 
-	var configPath = program.config;
+	var config = require(path.resolve(program.config));
 
-	if (!fs.existsSync(configPath) || fs.lstatSync(configPath).isDirectory())
-		throw Error(`Configuration file (required) not found at "${path.resolve(configPath)}"`);
-
-	try {
-		var config = require(path.resolve(configPath));
-	} catch (err) {
-		throw Error(`Error in config file: ${err.stack}`)
-	}
-
-	var valid = ajv.validate(configSchema, config);
-	if (!valid) {
+	if (!ajv.validate(configSchema, config)) {
 		throw Error('Configuration file validation failed\n'
 			+ ajv.errors.map(err => `    at <config>${err.dataPath}: ${err.message}`).join('\n'));
 	}
