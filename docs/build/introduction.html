@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>소개</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/default.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
 		<style>
 			* {
@@ -42,8 +42,8 @@
 				max-width: 100%;
 			}
 
-			pre, code {
-				font-family: 'Roboto Mono', monospace;
+			pre, pre.hljs, code {
+				font-family: Consolas, 'Roboto Mono', monospace;
 				background-color: rgba(0,0,0,.05);
 				white-space: pre-wrap;
 				word-break: break-all;
@@ -56,10 +56,13 @@
 
 			code {
 				font-size: .85em;
+				padding: .15em .3em;
+				border-radius: .3em;
 			}
 
 			pre code {
 				background-color: unset;
+				padding: 0;
 			}
 
 			p {
@@ -70,13 +73,12 @@
 				margin-top: 1em;
 			}
 
-			li p {
-				margin-top: 1em;
-				margin-bottom: 1em;
-			}
-
 			ul, ol {
 				margin: 1em 0;
+			}
+
+			ol li, ul li {
+				margin: .5em 0;
 			}
 
 			table {
@@ -278,9 +280,9 @@
 		</div>
 		<div id="content">
 			
-				<h1>m42kup-builder 소개</h1><p><code>m42kup-builder</code>는 <a href="https://github.com/logico-philosophical/m42kup" title="https://github.com/logico-philosophical/m42kup">m42kup</a>을 써서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 <code>m42kup-builder</code>로 빌드한 것이다. So meta!</p><h2>설치</h2><p>npm과 git이 설치되어 있어야 한다.</p><pre class="hljs"><code><span class="hljs-built_in">npm</span> install logico-philosophical/m42kup-builder
-</code></pre><h2>사용법</h2><p>문서를 생성하기 위해서는 먼저 문서 및 <a href="./config-file.html" title="./config-file.html">설정 파일</a>을 작성하고 터미널에서 다음과 같이 입력하면 된다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> m42kup-builder
-</code></pre><p>또 다음과 같이 입력하면 가능한 옵션을 볼 수 있다.</p><pre class="hljs"><code>npx m42kup-builder --<span class="hljs-built_in">help</span>
+				<h1>m42kup-builder 소개</h1><p><code>m42kup-builder</code>는 <a href="https://github.com/logico-philosophical/m42kup" title="https://github.com/logico-philosophical/m42kup">m42kup</a>을 써서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 <code>m42kup-builder</code>로 빌드한 것이다. So meta!</p><h2>설치</h2><p>npm과 git이 설치되어 있어야 한다.</p><pre class="hljs"><code><span class="hljs-attribute">npm</span> install logico-philosophical/m<span class="hljs-number">42</span>kup-builder
+</code></pre><h2>사용법</h2><p>문서를 생성하기 위해서는 먼저 문서 및 <a href="./config-file.html" title="./config-file.html">설정 파일</a>을 작성하고 터미널에서 다음과 같이 입력하면 된다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> m<span class="hljs-number">42</span>kup-builder
+</code></pre><p>또 다음과 같이 입력하면 가능한 옵션을 볼 수 있다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> m<span class="hljs-number">42</span>kup-builder --help
 </code></pre>
 			
 		</div>

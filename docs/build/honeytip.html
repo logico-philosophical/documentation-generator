@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>꿀팁</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/default.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
 		<style>
 			* {
@@ -42,8 +42,8 @@
 				max-width: 100%;
 			}
 
-			pre, code {
-				font-family: 'Roboto Mono', monospace;
+			pre, pre.hljs, code {
+				font-family: Consolas, 'Roboto Mono', monospace;
 				background-color: rgba(0,0,0,.05);
 				white-space: pre-wrap;
 				word-break: break-all;
@@ -56,10 +56,13 @@
 
 			code {
 				font-size: .85em;
+				padding: .15em .3em;
+				border-radius: .3em;
 			}
 
 			pre code {
 				background-color: unset;
+				padding: 0;
 			}
 
 			p {
@@ -70,13 +73,12 @@
 				margin-top: 1em;
 			}
 
-			li p {
-				margin-top: 1em;
-				margin-bottom: 1em;
-			}
-
 			ul, ol {
 				margin: 1em 0;
+			}
+
+			ol li, ul li {
+				margin: .5em 0;
 			}
 
 			table {
@@ -279,14 +281,14 @@
 		<div id="content">
 			
 				<h1>꿀팁</h1><h2>자동 빌드 하는 법</h2><p>소스를 수정했을 때 알아서 빌드가 되도록 하기 위하여 <a href="https://www.npmjs.com/package/nodemon" title="https://www.npmjs.com/package/nodemon">nodemon</a>이라는 훌륭한 패키지를 쓸 수 있다.</p><pre class="hljs"><code>npm <span class="hljs-keyword">install</span> nodemon <span class="hljs-comment">--save-dev</span>
-</code></pre><p>소스 코드가 <code>src</code>에 있을 경우 다음의 코드를 실행하여 <code>src</code>에 있는 파일이 변경되면 자동 빌드되도록 할 수 있다.</p><pre class="hljs"><code>npx nodemon -e * --watch src/ --<span class="hljs-built_in">exec</span> m42kup-builder
-</code></pre><p><code>m42kup-builder.config.js</code>나 <code>template.ejs</code> 등의 변화에도 적용하려면 다음과 같이 <code>--watch</code> 옵션을 여러 개 주면 된다.</p><pre class="hljs"><code>npx nodemon -e * --watch src/ --watch m42kup-builder.config.js --watch template.ejs --<span class="hljs-built_in">exec</span> m42kup-builder
+</code></pre><p>소스 코드가 <code>src</code>에 있을 경우 다음의 코드를 실행하여 <code>src</code>에 있는 파일이 변경되면 자동 빌드되도록 할 수 있다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> nodemon -e * --watch src/ --exec m<span class="hljs-number">42</span>kup-builder
+</code></pre><p><code>m42kup-builder.config.js</code>나 <code>template.ejs</code> 등의 변화에도 적용하려면 다음과 같이 <code>--watch</code> 옵션을 여러 개 주면 된다.</p><pre class="hljs"><code><span class="hljs-selector-tag">npx</span> <span class="hljs-selector-tag">nodemon</span> <span class="hljs-selector-tag">-e</span> * <span class="hljs-selector-tag">--watch</span> <span class="hljs-selector-tag">src</span>/ <span class="hljs-selector-tag">--watch</span> <span class="hljs-selector-tag">m42kup-builder</span><span class="hljs-selector-class">.config</span><span class="hljs-selector-class">.js</span> <span class="hljs-selector-tag">--watch</span> <span class="hljs-selector-tag">template</span><span class="hljs-selector-class">.ejs</span> <span class="hljs-selector-tag">--exec</span> <span class="hljs-selector-tag">m42kup-builder</span>
 </code></pre><p><code>package.json</code>의 <code>scripts</code>에 다음과 같이 추가하여 쓸 수도 있다.</p><p><b>package.json</b>
 </p><pre class="hljs"><code>{
 	...
-	<span class="hljs-string">"scripts"</span>: {
+	<span class="hljs-string">&quot;scripts&quot;</span>: {
 		...
-		<span class="hljs-string">"nodemon"</span>: <span class="hljs-string">"nodemon -e * --watch src/ --exec m42kup-builder"</span>
+		<span class="hljs-string">&quot;nodemon&quot;</span>: <span class="hljs-string">&quot;nodemon -e * --watch src/ --exec m42kup-builder&quot;</span>
 	},
 	...
 }
