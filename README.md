@@ -2,7 +2,75 @@
 
 <p align="center"><a href="https://logico-philosophical.github.io/documentation-generator/docs/build/introduction.html">docs</a></p>
 
-[![GitHub](https://img.shields.io/github/license/logico-philosophical/documentation-generator)](https://github.com/logico-philosophical/documentation-generator/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/documentation-generator)](https://www.npmjs.com/package/documentation-generator)
 [![Build Status](https://img.shields.io/travis/com/logico-philosophical/documentation-generator)](https://app.travis-ci.com/github/logico-philosophical/documentation-generator)
+[![GitHub](https://img.shields.io/github/license/logico-philosophical/documentation-generator)](https://github.com/logico-philosophical/documentation-generator/blob/master/LICENSE)
 
-문서 참조.
+Build documentation using a markup renderer like [m42kup](https://github.com/logico-philosophical/m42kup).
+
+## Installation
+
+```
+npm install documentation-generator
+```
+
+## Example configuration using `m42kup`
+
+```
+npm install m42kup
+```
+
+**Example directory structure**
+
+```
+root/
+├ build/
+├ src/
+│ ├ file1.m42kup
+│ └ dir1/
+│   ├ file2.m42kup
+│   └ file3.m42kup
+├ documentation-generator.config.js
+├ package.json
+└ ...
+```
+
+**`documentation-generator.config.js`**
+
+```js
+var m42kup = require('m42kup');
+
+var styles = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@latest/web/m42kup.default.css">`;
+
+module.exports = {
+    name: 'Example documentation',
+    src: 'src',
+    dst: 'build',
+    render: text => m42kup.render(text),
+    templateData: {
+        styles
+    },
+    list: [
+        {
+            name: 'File 1',
+            file: 'file1.m42kup'
+        },
+        {
+            name: 'Directory 1',
+            dir: 'dir1',
+            list: [
+                {
+                    name: 'File 2',
+                    file: 'file2.m42kup'
+                },
+                {
+                    name: 'File 3',
+                    file: 'file3.m42kup'
+                }
+            ]
+        }
+    ]
+};
+```
+
+Refer to the [documentation](https://logico-philosophical.github.io/documentation-generator/docs/build/introduction.html) for more information.
