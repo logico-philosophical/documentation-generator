@@ -1,0 +1,1 @@
+throw Error('This module does not support being imported. Please run it like `npx documentation-generator` instead.');

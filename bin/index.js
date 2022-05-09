@@ -9,8 +9,8 @@ var ajv = new require('ajv')({
 var ejs = require('ejs');
 var commander = require('commander');
 
-var version = require('./package').version;
-var configSchema = require('./config-schema');
+var version = require('../package').version;
+var configSchema = require('../config-schema');
 
 var program = new commander.Command();
 program
@@ -53,7 +53,7 @@ try {
 
 	var render = config.render;
 
-	var templatePath = config.template || path.join(__dirname, 'templates/default.ejs');
+	var templatePath = config.template || path.join(__dirname, '../templates/default.ejs');
 
 	if (!fs.existsSync(templatePath) || fs.lstatSync(templatePath).isDirectory())
 		throw Error(`Template file not found at "${path.resolve(templatePath)}"`);
