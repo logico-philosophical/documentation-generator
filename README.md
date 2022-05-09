@@ -1,8 +1,8 @@
-<h1 align="center">m42kup-builder</h1>
+<h1 align="center">documentation-generator</h1>
 
-<p align="center"><a href="https://logico-philosophical.github.io/m42kup-builder/docs/build/introduction.html">docs</a></p>
+<p align="center"><a href="https://logico-philosophical.github.io/documentation-generator/docs/build/introduction.html">docs</a></p>
 
-[![GitHub](https://img.shields.io/github/license/logico-philosophical/m42kup-builder)](https://github.com/logico-philosophical/m42kup-builder/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/com/logico-philosophical/m42kup-builder)](https://app.travis-ci.com/github/logico-philosophical/m42kup-builder)
+[![GitHub](https://img.shields.io/github/license/logico-philosophical/documentation-generator)](https://github.com/logico-philosophical/documentation-generator/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/com/logico-philosophical/documentation-generator)](https://app.travis-ci.com/github/logico-philosophical/documentation-generator)
 
 문서 참조.

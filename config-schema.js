@@ -16,7 +16,7 @@ module.exports = {
 							type: 'string',
 							minLength: 1,
 							not: {
-								const: 'index'
+								pattern: '^index(\.[^.]*)?$'
 							}
 						}
 					}
@@ -33,10 +33,7 @@ module.exports = {
 						},
 						dir: {
 							type: 'string',
-							minLength: 1,
-							not: {
-								const: 'index'
-							}
+							minLength: 1
 						},
 						list: {
 							type: 'array',
@@ -71,6 +68,14 @@ module.exports = {
 			type: 'string',
 			minLength: 1
 			/* default: <__dirname>/templates/default.ejs */
+		},
+		templateData: {
+			type: 'object',
+			patternProperties: {
+				'^[a-zA-Z_][a-zA-Z0-9_]*$': {}
+			},
+			additionalProperties: false,
+			default: {}
 		},
 		render: { /* function */ },
 		list: {

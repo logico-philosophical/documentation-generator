@@ -15,7 +15,7 @@ install:
 
 script:
   - sed -i 's/^docs\/build\/$//g' .gitignore
-  - cd docs && npx m42kup-builder && cd ..
+  - cd docs && npm run build && cd ..
 
 deploy:
   provider: pages

@@ -6,7 +6,8 @@
 		<title>소개</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/tomorrow.min.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@0.3.0/web/m42kup.default.css">
 		<style>
 			* {
 				box-sizing: border-box;
@@ -220,53 +221,7 @@
 				}
 			}
 		</style>
-		<style>
-			.m42kup-error {
-				color: red;
-				border: 1px red solid;
-				padding: 0 .2em;
-			}
-
-			blockquote.m42kup-bq-info {
-				border-left-color: #1976d2;
-			    background-color: #e3f2fd;
-			    color: #1976d2;
-			}
-
-			blockquote.m42kup-bq-info a {
-			    color: #1976d2;
-			    font-weight: bold;
-			}
-
-			blockquote.m42kup-bq-info::before {
-				content: url('data:image/svg+xml,%0A%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%231976d2"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/%3E%3C/svg%3E');
-				display: inline-block;
-			    width: 24px;
-			    height: 24px;
-			    float: left;
-			    margin-right: .5em;
-			}
-
-			blockquote.m42kup-bq-warn {
-				border-left-color: #d32f2f;
-				background-color: #ffebee;
-				color: #d32f2f;
-			}
-
-			blockquote.m42kup-bq-warn a {
-			    color: #d32f2f;
-			    font-weight: bold;
-			}
-
-			blockquote.m42kup-bq-warn::before {
-				content: url('data:image/svg+xml,%0A%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d32f2f"%3E%3Cpath d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/%3E%3C/svg%3E');
-			    display: inline-block;
-			    width: 24px;
-			    height: 24px;
-			    float: left;
-			    margin-right: .5em;
-			}
-		</style>
+		
 	</head>
 	<body>
 		<div id="toc">
@@ -275,15 +230,15 @@
 							<svg class="toc-on-folded" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
 							<svg class="toc-on-expanded" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
 						</button>
-						<a href="./index.html">m42kup-builder 설명서</a>
+						<a href="./index.html">documentation-generator 설명서</a>
 					</div>
 					<ol class="toc-on-expanded"><li><div><a href="./introduction.html">소개</a></div></li><li><div><a href="./config-file.html">설정 파일</a></div></li><li><div><a href="./templates.html">커스텀 템플릿</a></div></li><li><div><a href="./honeytip.html">꿀팁</a></div></li></ol>
 		</div>
 		<div id="content">
 			
-				<h1>m42kup-builder 소개</h1><p><code>m42kup-builder</code>는 <a href="https://github.com/logico-philosophical/m42kup" title="https://github.com/logico-philosophical/m42kup">m42kup</a>을 써서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 <code>m42kup-builder</code>로 빌드한 것이다. So meta!</p><h2>설치</h2><p>npm과 git이 설치되어 있어야 한다.</p><pre class="hljs"><code><span class="hljs-attribute">npm</span> install logico-philosophical/m<span class="hljs-number">42</span>kup-builder
-</code></pre><h2>사용법</h2><p>문서를 생성하기 위해서는 먼저 문서 및 <a href="./config-file.html" title="./config-file.html">설정 파일</a>을 작성하고 터미널에서 다음과 같이 입력하면 된다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> m<span class="hljs-number">42</span>kup-builder
-</code></pre><p>또 다음과 같이 입력하면 가능한 옵션을 볼 수 있다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> m<span class="hljs-number">42</span>kup-builder --help
+				<h1>documentation-generator 소개</h1><p><code>documentation-generator</code>는 <a href="https://github.com/logico-philosophical/m42kup" title="https://github.com/logico-philosophical/m42kup">m42kup</a>등의 마크업 렌더러를 사용해서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 <code>documentation-generator</code>로 빌드한 것이다. So meta!</p><h2>설치</h2><pre class="hljs"><code><span class="hljs-built_in">npm</span> install documentation-generator
+</code></pre><h2>사용법</h2><p>문서를 생성하기 위해서는 먼저 문서 및 <a href="./config-file.html" title="./config-file.html">설정 파일</a>을 작성하고 터미널에서 다음과 같이 입력하면 된다.</p><pre class="hljs"><code><span class="hljs-attribute">npx</span> documentation-generator
+</code></pre><p>또 다음과 같이 입력하면 가능한 옵션을 볼 수 있다.</p><pre class="hljs"><code>npx documentation-generator --<span class="hljs-built_in">help</span>
 </code></pre>
 			
 		</div>
