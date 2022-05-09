@@ -17,7 +17,7 @@ npm install documentation-generator
 ## Example configuration using `m42kup`
 
 ```
-npm install m42kup
+npm install m42kup@0.3
 ```
 
 **Example directory structure**
@@ -38,9 +38,23 @@ root/
 **`documentation-generator.config.js`**
 
 ```js
+var fs = require('fs'),
+    path = require('path');
+
+// Finds out the version of a module.
+function getVersion(name) {
+    var dir = path.dirname(require.resolve(name));
+
+    while (!fs.existsSync(path.join(dir, 'package.json'))) {
+        dir = path.resolve(dir, '..');
+    }
+    
+    return require(path.join(dir, 'package')).version;
+}
+
 var m42kup = require('m42kup');
 
-var styles = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@latest/web/m42kup.default.css">`;
+var styles = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@${getVersion('m42kup')}/web/m42kup.default.css">`;
 
 module.exports = {
     name: 'Example documentation',

@@ -1,12 +1,26 @@
+var fs = require('fs'),
+	path = require('path');
+
+// Finds out the version of a module.
+function getVersion(name) {
+	var dir = path.dirname(require.resolve(name));
+
+	while (!fs.existsSync(path.join(dir, 'package.json'))) {
+		dir = path.resolve(dir, '..');
+	}
+	
+	return require(path.join(dir, 'package')).version;
+}
+
 var m42kup = require('m42kup'),
 	hljs = require('highlight.js'),
 	katex = require('katex');
 
 m42kup.set({hljs, katex});
 
-var styles = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/tomorrow.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@0.3.0/web/m42kup.default.css">`;
+var styles = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@${getVersion('highlight.js')}/styles/tomorrow.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@${getVersion('katex')}/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@${getVersion('m42kup')}/web/m42kup.default.css">`;
 
 module.exports = {
 	name: 'documentation-generator 설명서',
