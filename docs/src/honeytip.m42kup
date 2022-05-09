@@ -8,11 +8,11 @@
 
 소스 코드가 [;src]에 있을 경우 다음의 코드를 실행하여 [;src]에 있는 파일이 변경되면 자동 빌드되도록 할 수 있다.
 
-[;;;(lang=shell)npx nodemon -e * --watch src/ --exec m42kup-builder]
+[;;;(lang=shell)npx nodemon -e * --watch src/ --exec documentation-generator]
 
-[;m42kup-builder.config.js]나 [;template.ejs] 등의 변화에도 적용하려면 다음과 같이 [;--watch] 옵션을 여러 개 주면 된다.
+[;documentation-generator.config.js]나 [;template.ejs] 등의 변화에도 적용하려면 다음과 같이 [;--watch] 옵션을 여러 개 주면 된다.
 
-[;;;(lang=shell)npx nodemon -e * --watch src/ --watch m42kup-builder.config.js --watch template.ejs --exec m42kup-builder]
+[;;;(lang=shell)npx nodemon -e * --watch src/ --watch documentation-generator.config.js --watch template.ejs --exec documentation-generator]
 
 [;package.json]의 [;scripts]에 다음과 같이 추가하여 쓸 수도 있다.
 
@@ -22,7 +22,7 @@
 	...
 	"scripts": {
 		...
-		"nodemon": "nodemon -e * --watch src/ --exec m42kup-builder"
+		"nodemon": "nodemon -e * --watch src/ --exec documentation-generator"
 	},
 	...
 }

@@ -14,9 +14,9 @@ var configSchema = require('./config-schema');
 
 var program = new commander.Command();
 program
-	.name('m42kup-builder')
+	.name('documentation-generator')
 	.version(version)
-	.option('--config <path>', 'location of the configuration file', './m42kup-builder.config.js')
+	.option('--config <path>', 'location of the configuration file', './documentation-generator.config.js')
 	.parse(process.argv);
 
 function getRelativeDir(srcTree, dstTree) {
@@ -32,15 +32,19 @@ function getRelativeDir(srcTree, dstTree) {
 		+ dstDirs.slice(i).map(e => e + '/').join('');
 }
 
+function getHtmlFilename(filename) {
+	return filename.replace(/\.[^.]*$/, '.html');
+}
+
 try {
-	var signature = ` M42/markup/builder v${version} `
+	var signature = ` documentation-generator v${version} `
 	console.log(`${'='.repeat(signature.length)}\n${signature}\n${'='.repeat(signature.length)}\n`);
 	var startTime = Date.now();
 
 	var config = require(path.resolve(program.config));
 
 	if (!ajv.validate(configSchema, config)) {
-		throw Error('Configuration file validation failed\n'
+		throw Error('Invalid configuration file\n'
 			+ ajv.errors.map(err => `    at <config>${err.dataPath}: ${err.message}`).join('\n'));
 	}
 
@@ -55,6 +59,7 @@ try {
 		throw Error(`Template file not found at "${path.resolve(templatePath)}"`);
 
 	var templateFile = fs.readFileSync(templatePath, 'utf-8');
+	var templateData = config.templateData;
 	var template = ejs.compile(templateFile);
 
 	var name = config.name;
@@ -102,7 +107,7 @@ try {
 			if (tree.file == 'index')
 				throw Error('Name "index" is reserved');
 
-			var file = path.resolve(src, ...dirs, tree.file + '.m42kup');
+			var file = path.resolve(src, ...dirs, tree.file);
 
 			if (!fs.existsSync(file))
 				throw Error(`File ${file} does not exist`);
@@ -115,7 +120,7 @@ try {
 				dirs,
 				file: tree.file,
 				srcpath: file,
-				dstpath: path.resolve(dst, ...dirs, tree.file + '.html')
+				dstpath: path.resolve(dst, ...dirs, getHtmlFilename(tree.file))
 			};
 		} else {
 			throw Error('Assertion failed');
@@ -136,7 +141,7 @@ try {
 		} else {
 			return {
 				name: tree.name,
-				relativeLink: getRelativeDir(srcTree, tree) + tree.file + '.html'
+				relativeLink: getRelativeDir(srcTree, tree) + getHtmlFilename(tree.file)
 			};
 		}
 	})(root);
@@ -146,14 +151,14 @@ try {
 			let globaltoc = getToc(root, tree);
 			let localtoc = getToc(tree, tree);
 
-			let html = template({
+			let html = template(Object.assign({
 				toc: {
 					global: globaltoc,
 					local: localtoc
 				},
 				title: tree.name,
 				file: false
-			});
+			}, templateData));
 
 			fs.writeFileSync(tree.dstpath, html);
 
@@ -164,7 +169,7 @@ try {
 			let globaltoc = getToc(root, tree);
 			let localtoc = getToc(tree, tree);
 
-			let html = template({
+			let html = template(Object.assign({
 				toc: {
 					global: globaltoc,
 					local: localtoc
@@ -173,11 +178,11 @@ try {
 				file: {
 					content
 				}
-			});
+			}, templateData));
 
 			fs.writeFileSync(tree.dstpath, html);
 
-			console.log(`[  ${chalk.green('OK')}  ] ${path.join(src, ...tree.dirs, tree.file + '.m42kup')} -> ${path.join(dst, ...tree.dirs, tree.file + '.html')}`);
+			console.log(`[  ${chalk.green('OK')}  ] ${path.join(src, ...tree.dirs, tree.file)} -> ${path.join(dst, ...tree.dirs, getHtmlFilename(tree.file))}`);
 		}
 	})(root);
 
