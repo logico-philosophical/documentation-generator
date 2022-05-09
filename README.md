@@ -73,4 +73,10 @@ module.exports = {
 };
 ```
 
+Finally, run
+```
+npx documentation-generator
+```
+at the root directory and open `build/index.html` to see the generated documentation.
+
 Refer to the [documentation](https://logico-philosophical.github.io/documentation-generator/docs/build/introduction.html) for more information.
