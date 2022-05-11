@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx ..",
+    "build": "documentation-generator",
     "nodemon": "nodemon -e * --watch src/ --watch documentation-generator.config.js --exec \"npm run build\""
   },
   "keywords": [],
@@ -14,7 +14,8 @@
   "dependencies": {
     "highlight.js": "^10.7.3",
     "katex": "^0.15.3",
-    "m42kup": "^0.3.1"
+    "m42kup": "^0.3.1",
+    "documentation-generator": "file:.."
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
