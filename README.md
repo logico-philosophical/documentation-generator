@@ -3,7 +3,7 @@
 <p align="center"><a href="https://logico-philosophical.github.io/documentation-generator/docs/build/introduction.html">docs</a></p>
 
 [![npm](https://img.shields.io/npm/v/documentation-generator)](https://www.npmjs.com/package/documentation-generator)
-[![Build Status](https://img.shields.io/travis/com/logico-philosophical/documentation-generator)](https://app.travis-ci.com/github/logico-philosophical/documentation-generator)
+[![Node.js CI](https://github.com/logico-philosophical/documentation-generator/actions/workflows/test-and-build.yml/badge.svg)](https://github.com/logico-philosophical/documentation-generator/actions/workflows/test-and-build.yml)
 [![GitHub](https://img.shields.io/github/license/logico-philosophical/documentation-generator)](https://github.com/logico-philosophical/documentation-generator/blob/master/LICENSE)
 
 Build documentation using a markup renderer like [m42kup](https://github.com/logico-philosophical/m42kup).
