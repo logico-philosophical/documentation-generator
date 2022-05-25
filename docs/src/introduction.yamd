@@ -1,6 +1,6 @@
 [=documentation-generator 소개]
 
-[;documentation-generator]는 [~(href=https://github.com/logico-philosophical/m42kup)m42kup]등의 마크업 렌더러를 사용해서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 [;documentation-generator]로 빌드한 것이다. So meta!
+[;documentation-generator]는 [~(href=https://github.com/logico-philosophical/yamd)yamd]등의 마크업 렌더러를 사용해서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 [;documentation-generator]로 빌드한 것이다. So meta!
 
 [==설치]
 
