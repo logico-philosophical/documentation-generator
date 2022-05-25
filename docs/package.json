@@ -12,10 +12,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "documentation-generator": "file:..",
     "highlight.js": "^10.7.3",
     "katex": "^0.15.3",
-    "m42kup": "^0.3.1",
-    "documentation-generator": "file:.."
+    "yamd": "^0.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

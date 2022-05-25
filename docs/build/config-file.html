@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.3/styles/tomorrow.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/m42kup@0.3.1/web/m42kup.default.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yamd@0.4.0/web/yamd.default.css">
 		<style>
 			* {
 				box-sizing: border-box;
@@ -272,7 +272,7 @@
 }
 </code></pre><p><code>list</code>에는 재귀적으로 파일 또는 디렉터리의 배열이 들어간다.
 	</p></li></ul><p>
-</p></li></ul><p>이 설명서가 지금 사용하고 있는 설정은 다음과 같다.</p><pre class="hljs"><code><span class="hljs-attribute">npm</span> install m<span class="hljs-number">42</span>kup@<span class="hljs-number">0</span>.<span class="hljs-number">3</span> katex@<span class="hljs-number">0</span>.<span class="hljs-number">15</span> highlight.js@<span class="hljs-number">10</span>
+</p></li></ul><p>이 설명서가 지금 사용하고 있는 설정은 다음과 같다.</p><pre class="hljs"><code><span class="hljs-attribute">npm</span> install yamd@<span class="hljs-number">0</span>.<span class="hljs-number">4</span> katex@<span class="hljs-number">0</span>.<span class="hljs-number">15</span> highlight.js@<span class="hljs-number">10</span>
 </code></pre><pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>),
 	path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
 
@@ -287,50 +287,50 @@
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">require</span>(path.join(dir, <span class="hljs-string">&#x27;package&#x27;</span>)).version;
 }
 
-<span class="hljs-keyword">var</span> m42kup = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;m42kup&#x27;</span>),
+<span class="hljs-keyword">var</span> yamd = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;yamd&#x27;</span>),
 	hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;highlight.js&#x27;</span>),
 	katex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;katex&#x27;</span>);
 
-m42kup.set({hljs, katex});
+yamd.set({hljs, katex});
 
 <span class="hljs-keyword">var</span> styles = <span class="hljs-string">`&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/highlight.js@<span class="hljs-subst">${getVersion(<span class="hljs-string">&#x27;highlight.js&#x27;</span>)}</span>/styles/tomorrow.min.css&quot;&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@<span class="hljs-subst">${getVersion(<span class="hljs-string">&#x27;katex&#x27;</span>)}</span>/dist/katex.min.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/m42kup@<span class="hljs-subst">${getVersion(<span class="hljs-string">&#x27;m42kup&#x27;</span>)}</span>/web/m42kup.default.css&quot;&gt;`</span>;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/yamd@<span class="hljs-subst">${getVersion(<span class="hljs-string">&#x27;yamd&#x27;</span>)}</span>/web/yamd.default.css&quot;&gt;`</span>;
 
 <span class="hljs-built_in">module</span>.exports = {
 	<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;documentation-generator 설명서&#x27;</span>,
 	<span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;src&#x27;</span>,
 	<span class="hljs-attr">dst</span>: <span class="hljs-string">&#x27;build&#x27;</span>,
-	<span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> m42kup.render(text),
+	<span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> yamd.render(text),
 	<span class="hljs-attr">templateData</span>: {
 		styles
 	},
 	<span class="hljs-attr">list</span>: [
 		{
 			<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;소개&#x27;</span>,
-			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;introduction.m42kup&#x27;</span>
+			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;introduction.yamd&#x27;</span>
 		},
 		{
 			<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;설정 파일&#x27;</span>,
-			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;config-file.m42kup&#x27;</span>
+			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;config-file.yamd&#x27;</span>
 		},
 		{
 			<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;커스텀 템플릿&#x27;</span>,
-			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;templates.m42kup&#x27;</span>
+			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;templates.yamd&#x27;</span>
 		},
 		{
 			<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;꿀팁&#x27;</span>,
-			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;honeytip.m42kup&#x27;</span>
+			<span class="hljs-attr">file</span>: <span class="hljs-string">&#x27;honeytip.yamd&#x27;</span>
 		},
 	]
 };
 </code></pre><p>디렉터리 구조는 다음과 같다.</p><pre><code>documentation-generator/docs
 ├ build
 ├ src
-│ ├ config-file.m42kup
-│ ├ honeytip.m42kup
-│ ├ introduction.m42kup
-│ └ templates.m42kup
+│ ├ config-file.yamd
+│ ├ honeytip.yamd
+│ ├ introduction.yamd
+│ └ templates.yamd
 ├ documentation-generator.config.js
 └ package.json 등
 </code></pre><p>빌드를 하면 build 디렉터리가 다음과 같이 된다.</p><pre><code>build

@@ -1,0 +1,17 @@
+[=documentation-generator 소개]
+
+[;documentation-generator]는 [~(href=https://github.com/logico-philosophical/yamd)yamd]등의 마크업 렌더러를 사용해서 이 페이지와 같은 설명서를 만들 수 있게 한다. 이 페이지는 기본으로 제공되는 템플릿을 사용하여 [;documentation-generator]로 빌드한 것이다. So meta!
+
+[==설치]
+
+[;;;(lang=shell)npm install documentation-generator]
+
+[==사용법]
+
+문서를 생성하기 위해서는 먼저 문서 및 [~(href=./config-file.html)설정 파일]을 작성하고 터미널에서 다음과 같이 입력하면 된다.
+
+[;;;(lang=shell)npx documentation-generator]
+
+또 다음과 같이 입력하면 가능한 옵션을 볼 수 있다.
+
+[;;;(lang=shell)npx documentation-generator --help]

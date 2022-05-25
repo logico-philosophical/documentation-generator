@@ -1,0 +1,33 @@
+[=꿀팁]
+
+[==자동 빌드 하는 법]
+
+소스를 수정했을 때 알아서 빌드가 되도록 하기 위하여 [~(href=https://www.npmjs.com/package/nodemon)nodemon]이라는 훌륭한 패키지를 쓸 수 있다.
+
+[;;;(lang=shell)npm install nodemon --save-dev]
+
+소스 코드가 [;src]에 있을 경우 다음의 코드를 실행하여 [;src]에 있는 파일이 변경되면 자동 빌드되도록 할 수 있다.
+
+[;;;(lang=shell)npx nodemon -e * --watch src/ --exec documentation-generator]
+
+[;documentation-generator.config.js]나 [;template.ejs] 등의 변화에도 적용하려면 다음과 같이 [;--watch] 옵션을 여러 개 주면 된다.
+
+[;;;(lang=shell)npx nodemon -e * --watch src/ --watch documentation-generator.config.js --watch template.ejs --exec documentation-generator]
+
+[;package.json]의 [;scripts]에 다음과 같이 추가하여 쓸 수도 있다.
+
+[**package.json]
+[;;;
+{
+	...
+	"scripts": {
+		...
+		"nodemon": "nodemon -e * --watch src/ --exec documentation-generator"
+	},
+	...
+}
+]
+
+이후
+[;;;npm run nodemon]
+으로 실행할 수 있다.
